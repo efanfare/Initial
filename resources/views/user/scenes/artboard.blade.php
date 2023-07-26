@@ -468,7 +468,7 @@
                 });
                 // Save the canvas state after adding the background image
                 saveCanvas();
-            });
+            },{ crossOrigin: "Anonymous" });
 
         };
 

@@ -14,12 +14,9 @@
                             </div>
                             <div class="menu" id="menu">
                                 <ul class="menu-inner">
-                                    <li class="menu-item"><a href="javascript:void(0)" class="menu-link">Holidays</a></li>
-                                    <li class="menu-item"><a href="javascript:void(0)" class="menu-link">Occasions</a></li>
-                                    <li class="menu-item"><a href="javascript:void(0)" class="menu-link">Family Events</a>
-                                    </li>
-                                    <li class="menu-item"><a href="javascript:void(0)" class="menu-link">Sports Teams</a>
-                                    </li>
+                                    <li><a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
                                     <li>
                                         <div class="ftb-subscribe-btn hide-btn-desktop">
 
@@ -56,6 +53,7 @@
             <div class="row">
                 <div class="col-lg-5 col-md-5 col-sm-5 col-12">
                     <div class="banner-sec-content">
+                        <h6>Holidays, Occasions, Family Events, And Sports Teams</h6>
                         <h1>Let's Make <span class="break-line">a scene</span> <span class="text-stroke">together</span>
                         </h1>
                         <div class="banner-cont-btn">

@@ -55,7 +55,7 @@ class InvitationMail extends Mailable
                 'inviterName' => $this->sceneInvitation->scene->user->first_name  . ' ' . $this->sceneInvitation->scene->user->last_name,
                 'sceneTitle' => $this->sceneInvitation->scene->title,
                 'inviterMessage' => $this->sceneInvitation->invitation_message,
-                'canvasImageUrl' => $this->sceneInvitation->scene->sceneCanvasImage->url ?? 'https://placehold.co/437x249/8e96c8/white?text=Scene%20Snapshot',
+                'canvasImageUrl' => $this->sceneInvitation->scene->sceneCanvasImage->url ?? url('images/scenesnapemail.png'),
             ]
         );
     }

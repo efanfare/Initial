@@ -12,6 +12,7 @@ use App\Models\PhotoBank;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Intervention\Image\Facades\Image;
+use Illuminate\Http\Exceptions\PostTooLargeException;
 
 class ItemController extends Controller
 {
@@ -47,44 +48,61 @@ class ItemController extends Controller
 
     public function store(Request $request)
     {
-
         try {
             // Validate the form data
             $this->validate($request, [
                 'title' => 'required|string|max:30',
                 'itemKeyword' => 'required',
-                'item_image' => 'required|image|mimes:jpeg,png,jpg|max:2048', // Maximum file size: 2MB (2048 kilobytes)
+                'item_image' => 'required|image|mimes:jpeg,png,jpg', // Remove the max validation here
             ], [
                 'item_image.required' => 'Please select an image',
                 'item_image.image' => 'Uploaded file format is not allowed. Try uploading an image of format jpeg or png',
                 'item_image.mimes' => 'Uploaded file format is not allowed. Try uploading an image of format jpeg or png',
-                'item_image.max' => 'File size should not be more than 2MB. Try again',
             ]);
 
+            // Check if the uploaded file size exceeds 2MB
+            if ($request->hasFile('item_image')) {
+                $maxSize = 2097152; // 2MB in bytes (1MB = 1024KB, 1KB = 1024 bytes)
+                $fileSize = $request->file('item_image')->getSize(); // Get the file size in bytes
 
-            $item =  new Item;
+                if ($fileSize > $maxSize) {
+                    return response()->json([
+                        'message' => 'File size should not be more than 2MB. Try again',
+                    ], 422);
+                }
+            }
+
+            // Create a new Item instance and set its properties
+            $item = new Item;
             $item->title = $request->title;
             $item->user_id = auth()->user()->id;
             $tags = explode(',', $request->input('itemKeyword')); // Convert comma-separated string to array
             $item->tags = json_encode($tags);
 
+            // Save the item to the database
             $item->save();
 
+            // Handle the uploaded file (if present and valid)
             if ($request->hasFile('item_image') && $request->file('item_image')->isValid()) {
-
                 $item->addMediaFromRequest('item_image')->toMediaCollection('item_image');
             }
 
+            // Render the view and send the JSON response
             $html = view('user.scenes.uploaded_items_ajax', compact('item'))->render();
 
             return response()->json([
                 'message' => 'Your item has been uploaded successfully!',
                 'html' => $html
-
             ]);
         } catch (ValidationException $e) {
             // Validation failed, manually handle the error
+            if ($e->errors()['item_image'][0] == 'The item image failed to upload.') {
+                return response()->json(['message' => 'File size should not be more than 2MB. Try again'], 422);
+            }
             return response()->json(['message' => '', 'errors' => $e->errors()], 422);
+        } catch (\Exception $e) {
+            // Handle other exceptions (if any)
+            return response()->json(['message' => 'An error occurred while processing your request. Please try again.'], 500);
         }
     }
 

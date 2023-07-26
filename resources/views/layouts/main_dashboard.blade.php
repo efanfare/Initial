@@ -33,8 +33,8 @@
                 </svg>
             </div>
             <div class="logo">
-                <a href="javascript:void(0)" class="dashboard-brand"><img src="{{ asset('images/dashboard-logo.png') }}"
-                        alt="image" class="img-fluid"> </a>
+                <a href="{{ route('home') }}" class="dashboard-brand"><img
+                        src="{{ asset('images/dashboard-logo.png') }}" alt="image" class="img-fluid"> </a>
             </div>
             <div class="sidebar-flex">
                 <div class="sidebar-box">
@@ -120,7 +120,7 @@
                         <div class="dropdown">
                             <a href="{{ route('profile.view') }}" id="adobeXd">Profile setting</a>
                             <a href="{{ route('plans.index') }}" id="sketch">Subscription plan</a>
-                            <a href="javascript:void(0)" id="figma">Support</a>
+                            {{-- <a href="javascript:void(0)" id="figma">Support</a> --}}
                             <a href="javascript:void(0)" data-toggle="modal" data-target="#exampleModal"
                                 id="inVision">Logout</a>
                         </div>
@@ -166,16 +166,16 @@
             <div class="dashboard-footer-flex">
                 <div class="db-footer-logo-flex">
                     <div class="db-footer-logo">
-                        <a href="javascript:void(0)"><img src="{{ asset('images/db-footer-logo.png') }}"
+                        <a href="{{ route('home') }}"><img src="{{ asset('images/db-footer-logo.png') }}"
                                 alt="image" class="img-fluid"></a>
                     </div>
 
                     <div class="db-footer-links">
                         <ul>
-                            <li><a href="javascript:void(0)">Home</a></li>
-                            <li><a href="javascript:void(0)">Support</a></li>
-                            <li><a href="javascript:void(0)">Terms of use</a></li>
-                            <li><a href="javascript:void(0)">Privacy policy</a></li>
+                            <li><a href="{{ route('home') }}">Home</a></li>
+                            {{-- <li><a href="javascript:void(0)">Support</a></li> --}}
+                            <li><a href="{{ route('terms') }}">terms of use</a></li>
+                            <li><a href="{{ route('privacy') }}">Privacy policy</a></li>
                         </ul>
                     </div>
                 </div>

@@ -25,14 +25,14 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="footer-flex">
                         <div class="footer-logo">
-                            <a href="index.html"><img src="{{ asset('images/logo.png') }}" alt="image"
+                            <a href="{{ route('home') }}"><img src="{{ asset('images/logo.png') }}" alt="image"
                                     class="img-fluid"></a>
                         </div>
                         <div class="footer-nav-links">
                             <ul>
                                 <li><a href="{{ route('home') }}">Home</a></li>
-                                <li><a href="javascript:void(0)">Support</a></li>
-                                <li><a href="{{ route('terms') }}">terms of use</a></li>
+                                {{-- <li><a href="javascript:void(0)">Support</a></li> --}}
+                                <li><a href="{{ route('terms') }}">Terms of use</a></li>
                                 <li><a href="{{ route('privacy') }}">Privacy policy</a></li>
                             </ul>
                         </div>

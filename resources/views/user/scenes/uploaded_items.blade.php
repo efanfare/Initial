@@ -13,7 +13,7 @@
                         <i class="fa fa-upload" aria-hidden="true"></i>
                         <div>Click here to upload image</div>
                         <div id="notimage-item" class="hidden">Please select an image</div>
-                        <span> Image type : jpeg,png and gif</span>
+                        <span> Image type : jpeg and png</span>
                     </div>
                     <div id="response-item" class="hidden">
                         <div id="messages-item"></div>

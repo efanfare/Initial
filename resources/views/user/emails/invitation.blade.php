@@ -5,7 +5,7 @@
 
 {{ $inviterMessage }}
 
-<img src="{{ $canvasImageUrl }}" alt="Scene Canvas Image" />
+<img src="{{ $canvasImageUrl }}" alt="Scene Canvas Image"/>
 
 <x-mail::button :url="$url">
     Accept Scene

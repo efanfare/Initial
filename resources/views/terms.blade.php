@@ -14,11 +14,11 @@
                             </div>
                             <div class="menu" id="menu">
                                 <ul class="menu-inner">
-                                    <li class="menu-item"><a href="javascript:void(0)" class="menu-link">Holidays</a></li>
-                                    <li class="menu-item"><a href="javascript:void(0)" class="menu-link">Occasions</a></li>
-                                    <li class="menu-item"><a href="javascript:void(0)" class="menu-link">Family Events</a>
+                                    <li><a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                                     </li>
-                                    <li class="menu-item"><a href="javascript:void(0)" class="menu-link">Sports Teams</a>
+                                    <li><a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                    </li>
+                                    <li><a href="javascript:void(0)"><i class="fa fa-instagram" aria-hidden="true"></i></a>
                                     </li>
                                     <li>
                                         <div class="ftb-subscribe-btn hide-btn-desktop">
@@ -208,4 +208,3 @@
         </div>
     </section>
 @endsection
-

@@ -31,37 +31,57 @@ class BackgroundController extends Controller
     {
 
         try {
-
+            // Validate the form data
             $this->validate($request, [
                 'title' => 'required|string|max:255',
-                'background_image' => 'required|image|mimes:jpeg,png,jpg|max:5120',
+                'background_image' => 'required|image|mimes:jpeg,png,jpg', // Remove the max validation here
             ], [
                 'background_image.required' => 'Please select an image',
                 'background_image.image' => 'Uploaded file format is not allowed. Try uploading an image of format jpeg or png',
                 'background_image.mimes' => 'Uploaded file format is not allowed. Try uploading an image of format jpeg or png',
-                'background_image.max' => 'File size should not be more than 5MB. Try again',
             ]);
 
+            // Check if the uploaded file size exceeds 5MB (5242880 bytes)
+            if ($request->hasFile('background_image')) {
+                $maxSize = 5242880; // 5MB in bytes (1MB = 1024KB, 1KB = 1024 bytes)
+                $fileSize = $request->file('background_image')->getSize(); // Get the file size in bytes
 
-            $background =  new Background;
+                if ($fileSize > $maxSize) {
+                    return response()->json([
+                        'message' => 'File size should not be more than 5MB. Try again',
+                    ], 422);
+                }
+            }
+
+            // Create a new Background instance and set its properties
+            $background = new Background;
             $background->title = $request->title;
             $background->user_id = auth()->user()->id;
+
+            // Save the background to the database
             $background->save();
 
+            // Handle the uploaded file (if present and valid)
             if ($request->hasFile('background_image') && $request->file('background_image')->isValid()) {
                 $background->addMediaFromRequest('background_image')->toMediaCollection('background_image');
             }
 
+            // Render the view and send the JSON response
             $html = view('user.scenes.uploaded_background_ajax', compact('background'))->render();
 
             return response()->json([
                 'message' => 'Your background file has been uploaded successfully!',
                 'html' => $html
-
             ]);
         } catch (ValidationException $e) {
             // Validation failed, manually handle the error
+            if ($e->errors()['background_image'][0] == 'The background image failed to upload.') {
+                return response()->json(['message' => 'File size should not be more than 5MB. Try again'], 422);
+            }
             return response()->json(['message' => '', 'errors' => $e->errors()], 422);
+        } catch (\Exception $e) {
+            // Handle other exceptions (if any)
+            return response()->json(['message' => 'An error occurred while processing your request. Please try again.'], 500);
         }
     }
 

@@ -156,7 +156,7 @@ a:focus {
 
 .hide-btn-mobile {
     display: block;
-    width: 36%;
+    width: auto;
     text-align: end;
 }
 
@@ -4150,8 +4150,11 @@ input::-webkit-inner-spin-button {
 
 .uploaded-flex .container-item {
     width: 66px;
-    height: 66px;
     max-width: 66px;
+}
+
+.uploaded-flex .container-item img {
+    height: 66px;
 }
 
 .uploaded-flex a {
@@ -9135,8 +9138,8 @@ div#sort-thread span {
 }
 
 .main-heart-box img {
-    width: 100%;
-    height: 300px;
+    max-width: 100%;
+    max-height: 300px;
     object-fit: cover;
 }
 
@@ -9232,6 +9235,7 @@ div#sort-thread span {
     right: 27px;
     font-size: 20px;
     color: #000;
+    cursor: pointer;
 }
 
 .ad-container-scene {
@@ -9291,4 +9295,16 @@ div#sort-thread span {
 
 .thread-loop {
     border-bottom: .5px solid #e7e2e2;
+}
+
+.menu-inner .fa {
+    font-size: 25px;
+    color: #000;
+    font-weight: 700;
+}
+
+.banner-sec-content h6 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #000;
 }
